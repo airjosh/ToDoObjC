@@ -6,6 +6,7 @@
 //
 
 #import "SceneDelegate.h"
+#import "TaskTableViewController.h"
 
 @interface SceneDelegate ()
 
@@ -18,6 +19,38 @@
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+
+    UIWindowScene *windowScene = (UIWindowScene *)scene;
+    self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
+    self.window.frame = windowScene.coordinateSpace.bounds;
+
+    TaskTableViewController *vc = [[TaskTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+
+    self.window.rootViewController = vc;
+    self.window.rootViewController = navigationController;
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+
+    if (@available(iOS 13, *)) {
+        UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc] init];
+        // This only set top status bar as transparent, not the nav bar.
+        [appearance configureWithTransparentBackground];
+        // This set the color for both status bar and nav bar(alpha 1).
+        [appearance setBackgroundColor: [UIColor colorWithRed:38.0f/255.0f green:166.0f/255.0f blue:211.0f/255.0f alpha:1.0f]];
+        [appearance setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil ]];
+        [appearance setLargeTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil ]];
+        
+        navigationController.navigationBar.standardAppearance = appearance;
+        navigationController.navigationBar.scrollEdgeAppearance = appearance;
+        // Nav bar need sets to translucent for both nav bar and status bar to be translucent.
+        [navigationController.navigationBar setTranslucent:YES];
+        // Need to reset nav bar's color to make it clear to display navBarAppearance's color
+        [navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
+        [navigationController.navigationBar setBarTintColor: [UIColor blueColor]];
+    }
+
+
 }
 
 
