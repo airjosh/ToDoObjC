@@ -30,18 +30,31 @@
     return self;
 }
 
+///  (to archive the object)
 - (void) encodeWithCoder:(NSCoder *)coder {
     [coder encodeObject:name forKey:kNameKey];
     [coder encodeBool:isDone forKey:kIsDoneKey];
 }
 
+/// (to unarchive the object
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder {
   if (self = [super init]) {
-      name = [decoder decodeObjectForKey:kNameKey];
-      isDone = [decoder decodeObjectForKey:kIsDoneKey];
+//      name = [decoder decodeObjectOfClass:[NSString class] forKey:kNameKey];
+//      isDone = [decoder decodeBoolForKey:kIsDoneKey];
+//      name = [decoder decodeObjectForKey:kNameKey];
+//      isDone = [decoder decodeObjectForKey:kIsDoneKey];
+      
+
+      self.name = [decoder decodeObjectForKey:kNameKey];
+      self.isDone = [decoder decodeBoolForKey:kIsDoneKey];
+      
+      
   }
   return self;
 }
 
++ (BOOL)supportsSecureCoding {
+    return true;
+}
 
 @end

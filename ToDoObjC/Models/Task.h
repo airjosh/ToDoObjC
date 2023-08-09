@@ -7,16 +7,20 @@
 
 #import <Foundation/Foundation.h>
 
+@class Task;
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Task : NSObject <NSCoding>
+@interface Task : NSObject <NSSecureCoding> // <NSCoding, NSSecureCoding>
 {
     NSString *name;
     BOOL isDone;
 }
 
 @property (retain, nonatomic) NSString *name;
-@property (nonatomic) BOOL isDone;
+//@property (nonatomic) BOOL isDone;
+@property (nonatomic, assign) BOOL isDone;
+
 
 - (void) encodeWithCoder:(NSCoder *)coder;
 -(id) initWithName:(NSString *)taskName isDone:(BOOL)boolValue;
