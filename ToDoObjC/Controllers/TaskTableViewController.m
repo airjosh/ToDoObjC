@@ -6,7 +6,7 @@
 //
 
 #import "TaskTableViewController.h"
-#import "Task.h"
+//#import "Task.h"
 
 static NSString *cellId = @"cell";
 static NSString *deleteImageName = @"delete";
@@ -28,7 +28,17 @@ const CGFloat estimatedRowHeight = 60.0F;
     self = [super initWithStyle:style];
     if(self){
         self.taskHelper = [[TaskHelper alloc] init];
-        self.taskHelper.tasks = [[NSMutableArray alloc] initWithCapacity:2];
+//        [self.taskHelper printTodoList];
+        NSMutableArray * todoList = [self.taskHelper fetchTodoList];
+        if (todoList == NULL){
+            NSLog(@"la lista de objetos desde el init %@",todoList);
+            self.taskHelper.tasks = [[NSMutableArray alloc] initWithCapacity:2];
+        } else {
+            self.taskHelper.tasks = todoList;
+        }
+        
+//        taskHelper
+//        self.taskHelper.tasks = [[NSMutableArray alloc] initWithCapacity:2];
         self.tableData = [NSMutableArray arrayWithObjects:
                           [[NSMutableArray alloc] init],
                           [[NSMutableArray alloc] init], nil];
@@ -38,16 +48,15 @@ const CGFloat estimatedRowHeight = 60.0F;
     return self;
 }
 
+#pragma mark -
+#pragma mark Lifecicle methods
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.navigationItem setTitle:@"To-Do List"];
     [self tableViewSetup];
-    NSMutableArray *allTasks = [[NSMutableArray alloc] init];
-    self.taskHelper.tasks = allTasks;
+//    NSMutableArray *allTasks = [[NSMutableArray alloc] init];
+//    self.taskHelper.tasks = allTasks;
     UIBarButtonItem *addBtn = [[UIBarButtonItem alloc]
                                initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                                target:self
@@ -58,6 +67,9 @@ const CGFloat estimatedRowHeight = 60.0F;
 }
 
 -(void)tableViewSetup {
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.navigationItem setTitle:@"To-Do List"];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = estimatedRowHeight;
 }
@@ -95,6 +107,8 @@ const CGFloat estimatedRowHeight = 60.0F;
             [self.tableView insertRowsAtIndexPaths:insertIndexPaths
                                   withRowAnimation:UITableViewRowAnimationAutomatic];
         }
+        [self.taskHelper saveTodoList];
+        [self.taskHelper printTodoList];
         [self.tableView endUpdates];
     }];
 
@@ -145,6 +159,9 @@ const CGFloat estimatedRowHeight = 60.0F;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//    NSLog(@"estamos en la seccion: %ld",(long)section);
+    
+//    NSLog(@"la lista de objetos en seccion %@",[self.taskHelper.tasks objectAtIndex:section]);
     return [[self.taskHelper.tasks objectAtIndex:section] count];
 }
 
@@ -168,6 +185,7 @@ const CGFloat estimatedRowHeight = 60.0F;
 
 #pragma mark - Table view delegate
 
+// To Delete tasks
 - (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath{
     UIContextualAction *delete = [UIContextualAction
                                   contextualActionWithStyle:UIContextualActionStyleDestructive
@@ -190,6 +208,8 @@ const CGFloat estimatedRowHeight = 60.0F;
         [self.tableView deleteRowsAtIndexPaths:insertIndexPaths
                               withRowAnimation:UITableViewRowAnimationAutomatic];
         [self.tableView endUpdates];
+        [self.taskHelper deleteTaskFromToDoList];
+        [self.taskHelper printTodoList];
         completionHandler(YES);
     }];
 
@@ -201,6 +221,7 @@ const CGFloat estimatedRowHeight = 60.0F;
     return swipeActionConfig;
 }
 
+// To marks tasks as Done
 - (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView leadingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     UIContextualAction *doneAction = [UIContextualAction
@@ -238,6 +259,8 @@ const CGFloat estimatedRowHeight = 60.0F;
         [self.tableView insertRowsAtIndexPaths:insertIndexPaths
                               withRowAnimation:UITableViewRowAnimationAutomatic];
         [self.tableView endUpdates];
+        [self.taskHelper saveTodoList];
+        [self.taskHelper printTodoList];
         completionHandler(YES);
     }];
     doneAction.backgroundColor = [UIColor greenColor];
@@ -247,5 +270,12 @@ const CGFloat estimatedRowHeight = 60.0F;
     return indexPath.section == 0 ? swipeAction : NULL;
 }
 
+
+- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"llamo al helper para ver que hay en la lista");
+//    [self.taskHelper saveTodoList];
+//    [self.taskHelper printTodoList];
+}
+//didEndEditingRowAtIndexPath
 
 @end

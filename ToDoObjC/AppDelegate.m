@@ -16,6 +16,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *data = [defaults objectForKey:@"listUpdated"];
+    
+    NSLog(@"la lista de objetos desde AppDelegate %@",data);
+//    
+    if (data == NULL) {
+        NSLog(@"la lista de objetos desde AppDelegate %@",data);
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"listUpdated"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+    }
     return YES;
 }
 

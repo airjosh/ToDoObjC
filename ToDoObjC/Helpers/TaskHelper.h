@@ -18,6 +18,12 @@
 - (void)addTask:(Task *)task atIndex:(NSInteger)index isDone: (BOOL)value;
 - (Task *)removeTaskAtIndex:(NSInteger)index isDone: (BOOL)value;
 
+- (void)saveTodoList;
+- (void)printTodoList;
+- (void)deleteTaskFromToDoList;
+- (NSMutableArray *)fetchTodoList;
+
+
 @end
 
 #endif /* TaskHelper_h */

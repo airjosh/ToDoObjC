@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "0E8F670F-7FDB-428A-B414-F3B6B5855ECD"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "26970506-2A76-4F36-B7D5-16F2D275B10C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoObjC/Helpers/TaskHelper.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "-printTodoList"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9020E8A5-9D78-4F98-92CB-1BA1EA1FF9A3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoObjC/Helpers/TaskHelper.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
+            landmarkName = "-saveTodoList"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9020E8A5-9D78-4F98-92CB-1BA1EA1FF9A3 - b2f2b57f83001e5f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[TaskHelper saveTodoList]"
+                  moduleName = "ToDoObjC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vn52zyc/Documents/own%20ios/ToDoObjC/ToDoObjC/Helpers/TaskHelper.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "180">
+               </Location>
+               <Location
+                  uuid = "9020E8A5-9D78-4F98-92CB-1BA1EA1FF9A3 - b2f2b57f83001e5f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[TaskHelper saveTodoList]"
+                  moduleName = "ToDoObjC"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vn52zyc/Documents/own%20ios/ToDoObjC/ToDoObjC/Helpers/TaskHelper.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "92"
+                  endingLineNumber = "92"
+                  offsetFromSymbolStart = "192">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F81622C8-41DB-4015-8D4C-F8198D2F9479"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoObjC/Controllers/TaskTableViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "-initWithStyle:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
